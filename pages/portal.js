@@ -3,7 +3,7 @@ import { getSession, useSession } from "next-auth/react";
 const stripe = require('stripe')(process.env.STRIPE_API_SECRET);
 
 export default function Portal() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <div>
