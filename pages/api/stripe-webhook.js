@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   stripeHandler(event);
 
   // Return a 200 response to acknowledge receipt of the event
-  res.status(200).send();
+  return res.status(200).send();
 }
 
 export const config = {
