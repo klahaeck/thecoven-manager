@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     return res.status(400).send({ error: `Webhook Error: ${err.message}`});
   }
 
-  stripeHandler(event);
+  await stripeHandler(event);
 
   // Return a 200 response to acknowledge receipt of the event
   return res.status(200).send();
