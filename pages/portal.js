@@ -24,8 +24,8 @@ export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
 
   const customers = session?.user?.email ? await stripe.customers.list({
-    // email: session.user.email,
-    email: 'elmauter@gmail.com', // FOR TESTING
+    // email: 'elmauter@gmail.com', // FOR TESTING
+    email: session.user.email,
     limit: 1,
   }) : undefined;
     
