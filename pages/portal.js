@@ -1,6 +1,9 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { getSession, useSession } from "next-auth/react";
 const stripe = require('stripe')(process.env.STRIPE_API_SECRET);
+import Layout from '../layouts/main';
+import { Button } from 'react-bootstrap';
 
 export default function Portal() {
   const { data: session } = useSession();
@@ -8,12 +11,19 @@ export default function Portal() {
   return (
     <div>
       <Head>
-        <title>The Coven Manager - Portal</title>
+        <title>The Coven Plan Manager - Portal</title>
       </Head>
 
-      <main>
-        <p>There is no customer record for {session.user.email}</p>
-      </main>
+      <Layout>
+        <h1 className="h3 text-center">We&apos;re sorry</h1>
+        <p className="fs-5 text-center mb-5">There is no customer record for <strong>{session.user.email}</strong></p>
+
+        <div className="text-center">
+          <Link href="/auth/signin?callbackUrl=http://localhost:3000/portal&error=SessionRequired" passHref>
+            <Button >Try again with a different address</Button>
+          </Link>
+        </div>
+      </Layout>
     </div>
   )
 }
