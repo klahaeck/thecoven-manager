@@ -4,7 +4,12 @@ import clientPromise from "../../../lib/mongodb";
 import EmailProvider from "next-auth/providers/email";
 // import sendVerificationRequest from '../../../lib/sendVerificationRequest';
 import _nodemailer from "nodemailer";
+import { google } from "googleapis";
 import '../../../styles/globals.scss';
+
+const OAuth2 = google.auth.OAuth2;
+const myOAuth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
+myOAuth2Client.setCredentials({refresh_token:process.env.GOOGLE_REFRESH_TOKEN});
 
 export default NextAuth({
   secret: process.env.SECRET,
@@ -33,7 +38,18 @@ export default NextAuth({
         const {
           host
         } = new URL(url);
-        const transport = (0, _nodemailer.createTransport)(server);
+        // const transport = (0, _nodemailer.createTransport)(server);
+        const myAccessToken = myOAuth2Client.getAccessToken();
+        const transport = _nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            type: "OAuth2",
+            user: "admin@thecoven.com", //your gmail account you used to set the project up in google cloud console"
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+            accessToken: myAccessToken //access token variable we defined earlier
+        }});
         await transport.sendMail({
           to: email,
           from,
