@@ -37,7 +37,7 @@ export default NextAuth({
         await transport.sendMail({
           to: email,
           from,
-          subject: `Sign in to ${host}`,
+          subject: `Sign in to manage your plan`,
           text: text({
             url,
             host
