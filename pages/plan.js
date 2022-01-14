@@ -5,13 +5,13 @@ const stripe = require('stripe')(process.env.STRIPE_API_SECRET);
 import Layout from '../layouts/main';
 import { Button } from 'react-bootstrap';
 
-export default function Portal() {
+const Plan = () => {
   const { data: session } = useSession();
 
   return (
     <div>
       <Head>
-        <title>The Coven Plan Manager - Portal</title>
+        <title>The Coven Plan Manager - My Plan</title>
       </Head>
 
       <Layout>
@@ -19,8 +19,8 @@ export default function Portal() {
         <p className="fs-5 text-center mb-5">There is no customer record for <strong>{session.user.email}</strong></p>
 
         <div className="text-center">
-          <Link href="/auth/signin?callbackUrl=http://localhost:3000/portal&error=SessionRequired" passHref>
-            <Button >Try again with a different address</Button>
+          <Link href={`/auth/signin?callbackUrl=${window.location.href}`} passHref>
+            <Button>Try again with a different address</Button>
           </Link>
         </div>
       </Layout>
@@ -28,7 +28,7 @@ export default function Portal() {
   )
 }
 
-Portal.auth = true;
+Plan.auth = true;
 
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
@@ -52,3 +52,5 @@ export async function getServerSideProps(ctx) {
     props: {},
   };
 }
+
+export default Plan;

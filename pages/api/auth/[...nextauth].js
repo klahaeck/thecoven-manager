@@ -146,16 +146,16 @@ function html({
   return `
 <body style="background: ${backgroundColor};">
   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: ${backgroundColor};" bgcolor="${backgroundColor}">
-    <!-- <tr>
+    <tr>
       <td align="center" style="padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
         <img src="https://images.squarespace-cdn.com/content/v1/5f1b16f93cbf1c1bb81a35ea/1596747152694-QHVKGBFOGJR4A7NFSI1W/FB_COVER_815x325P_%252Bbw_trans.png%3Fformat=1500w" alt="The Coven logo" width="75%" />
       </td>
-    </tr> -->
+    </tr>
   </table>
   <table width="100%" border="0" cellspacing="20" cellpadding="0" style="background: ${mainBackgroundColor}; max-width: 600px; margin: auto; border-radius: 10px;" bgcolor="${backgroundColor}">
     <tr>
       <td align="center" style="padding: 10px 0px 0px 0px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
-        Click the button below to sign in as <strong>${escapedEmail}</strong>
+        <p>Click the button below to sign in and manage your plan at The Coven.</p>
       </td>
     </tr>
     <tr>
