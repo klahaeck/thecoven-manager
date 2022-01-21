@@ -1,0 +1,17 @@
+@font-face {
+  font-family: SofiaProRegular;
+  src: url("/fonts/Sofia_Pro_Regular_Az.otf");
+}
+
+@font-face {
+  font-family: SofiaProBold;
+  src: url("/fonts/Sofia_Pro_Bold_Az.otf");
+}
+
+.sofia-pro-regular {
+  font-family: 'SofiaProRegular' !important;
+}
+
+.sofia-pro-bold {
+  font-family: 'SofiaProBold' !important;
+}

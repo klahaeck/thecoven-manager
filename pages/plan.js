@@ -21,7 +21,7 @@ const Plan = () => {
           </Col>
         </Row>
 
-        <h1 className="h3 text-center fw-bolder">Shoot!</h1>
+        <h1 className="h3 text-center sofia-pro-bold">Shoot!</h1>
         <p className="text-center mb-5">There is no customer with the address<br /><strong>{session.user.email}</strong></p>
 
         <div className="text-center">
