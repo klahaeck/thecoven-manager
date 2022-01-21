@@ -4,9 +4,10 @@ import { getCsrfToken } from 'next-auth/react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import Layout from '../../layouts/main';
 import { useForm, Controller } from 'react-hook-form';
+import { useEffect } from 'react';
 
 const SignIn = ({ csrfToken }) => {
-  const { register, control, handleSubmit, formState: { errors } } = useForm();
+  const { register, control, handleSubmit, formState: { errors, isValid, isSubmitting, isSubmitSuccessful } } = useForm();
   const router = useRouter();
 
   const onSubmit = data => {
@@ -48,24 +49,23 @@ const SignIn = ({ csrfToken }) => {
               <Controller
                 name="email"
                 control={control}
-                // disabled={isSubmitting}
                 rules={{
                   required: true,
                   pattern : /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 }}
                 render={({ field }) => <Form.Group className="mb-5">
                 <Form.Label htmlFor="email" visuallyHidden={true}>Email address</Form.Label>
-                <Form.Control {...field} />
-                {errors.email?.type === 'required' && <Form.Text className="text-danger">
+                <Form.Control {...field} disabled={isValid && (isSubmitting || isSubmitSuccessful)} />
+                {errors.email?.type === 'required' && <Form.Text className="text-light">
                   Email is required
                 </Form.Text>}
-                {errors.email?.type === 'pattern' && <Form.Text className="text-danger">
+                {errors.email?.type === 'pattern' && <Form.Text className="text-light">
                   Please enter a valid email address
                 </Form.Text>}
               </Form.Group>}
               />              
               
-              <Button variant="outline-light" type="submit" className="border-3">Sign in with Email</Button>
+              <Button variant="outline-light" type="submit" className="border-3" disabled={isValid && (isSubmitting || isSubmitSuccessful)}>Sign in with Email</Button>
             </Form>
           </Col>
         </Row>
