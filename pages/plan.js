@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getSession, useSession } from "next-auth/react";
 const stripe = require('stripe')(process.env.STRIPE_API_SECRET);
 import Layout from '../layouts/main';
-import { Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 
 const Plan = () => {
   const { data: session } = useSession();
@@ -15,12 +15,18 @@ const Plan = () => {
       </Head>
 
       <Layout>
-        <h1 className="h3 text-center">We&apos;re sorry</h1>
-        <p className="fs-5 text-center mb-5">There is no customer record for <strong>{session.user.email}</strong></p>
+        <Row className="justify-content-center mb-5">
+          <Col className="text-center">
+            <img src="/images/plane-burning.svg" alt="paper airplane burning" className="img-fluid" width="80" />
+          </Col>
+        </Row>
+
+        <h1 className="h3 text-center fw-bolder">Shoot!</h1>
+        <p className="text-center mb-5">There is no customer with the address<br /><strong>{session.user.email}</strong></p>
 
         <div className="text-center">
           <Link href={`/auth/signin?callbackUrl=${window.location.href}`} passHref>
-            <Button>Try again with a different address</Button>
+            <Button variant="outline-light" className="border-3">Try again with a different address</Button>
           </Link>
         </div>
       </Layout>
