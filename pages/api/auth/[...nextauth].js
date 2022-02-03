@@ -197,5 +197,5 @@ function text({
   url,
   host
 }) {
-  return `Sign in to ${host}\n${url}\n\n`;
+  return `Sign in to\n\n${url}\n\by pasting the link above into your browser.`;
 }
