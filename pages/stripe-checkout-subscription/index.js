@@ -37,7 +37,7 @@ const HubspotFormSubmit = () => {
 export async function getServerSideProps(ctx) {
   const { email, priceId, successUrl, cancelUrl, trialDays } = ctx.query;
 
-  const thisTrialDays = trialDays ? parseInt(trialDays) : undefined;  
+  const thisTrialDays = trialDays && trialDays > 0 ? parseInt(trialDays) : undefined;  
   const trialEnd = thisTrialDays ? new Date() : undefined;
   if (trialEnd) trialEnd.setDate(new Date().getDate() + (thisTrialDays + 1));
 
