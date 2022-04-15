@@ -17,7 +17,7 @@ const Test = () => {
         dangerouslySetInnerHTML={{
           __html: `
             // YOU CAN EDIT THESE VARIABLES
-            var priceId = 'price_1KVisAGHcLROIFMm1SabjGaU'; // LIVE
+            var priceId = 'price_1KVisAGHcLROIFMm1SabjGaU';
             var successUrl = 'https://www.thecoven.com/free-week-confirmation';
             var cancelUrl = 'https://www.thecoven.com/launch-copy-1234';
             var trialDays = 7;
