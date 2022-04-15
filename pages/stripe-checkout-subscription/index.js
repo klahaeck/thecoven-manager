@@ -58,7 +58,7 @@ export async function getServerSideProps(ctx) {
     },
   });
 
-  console.log(session.id);
+  // console.log(session.id);
 
   return {
     redirect: session?.url ? {

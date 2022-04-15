@@ -1,0 +1,5 @@
+# expire a checkout session
+# session id goes after "/session/"
+curl https://api.stripe.com/v1/checkout/sessions/cs_live_a1Db6Um0QwRr1P1kIthZBtdTW08wE4FyvGpKL7Nny0O4p6NIYX8TV7t2T4/expire \
+  -u sk_live_udsY27MfuUu0e9u8fadyHSMx: \
+  -X POST
