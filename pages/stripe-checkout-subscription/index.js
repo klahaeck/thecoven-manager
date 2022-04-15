@@ -37,10 +37,6 @@ const HubspotFormSubmit = () => {
 export async function getServerSideProps(ctx) {
   const { email, priceId, successUrl, cancelUrl, trialDays } = ctx.query;
 
-  const thisTrialDays = trialDays && trialDays > 0 ? parseInt(trialDays) : undefined;  
-  const trialEnd = thisTrialDays ? new Date() : undefined;
-  if (trialEnd) trialEnd.setDate(new Date().getDate() + (thisTrialDays + 1));
-
   const session = await stripe.checkout.sessions.create({
     customer_email: validateEmail(email) ? email : undefined,
     line_items: [
@@ -51,7 +47,7 @@ export async function getServerSideProps(ctx) {
     ],
     mode: 'subscription',
     subscription_data: {
-      trial_end: trialEnd,
+      trial_period_days: trialDays,
     },
     success_url: successUrl || process.env.NEXTAUTH_URL,
     cancel_url: cancelUrl || process.env.NEXTAUTH_URL,
@@ -59,8 +55,10 @@ export async function getServerSideProps(ctx) {
       recovery: {
         enabled: true
       }
-    }
+    },
   });
+
+  console.log(session.id);
 
   return {
     redirect: session?.url ? {
