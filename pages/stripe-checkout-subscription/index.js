@@ -55,6 +55,11 @@ export async function getServerSideProps(ctx) {
     },
     success_url: successUrl || process.env.NEXTAUTH_URL,
     cancel_url: cancelUrl || process.env.NEXTAUTH_URL,
+    after_expiration: {
+      recovery: {
+        enabled: true
+      }
+    }
   });
 
   return {
