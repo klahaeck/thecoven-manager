@@ -35,3 +35,4 @@ yarn-error.log*
 .vercel
 
 creds.txt
+TEST_COMMANDS.txt
