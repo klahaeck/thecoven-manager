@@ -1,5 +1,4 @@
 
-// HubSpot form id 18d36272-39f7-4056-a22c-9fc48b5ea09a
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 const stripe = require('stripe')(process.env.STRIPE_API_SECRET);
