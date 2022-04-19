@@ -16,12 +16,12 @@ const Test = () => {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            // YOU CAN EDIT THESE VARIABLES
+            // BEGIN STRIPE CHECKOUT VARIABLES
             var priceId = 'price_1KVisAGHcLROIFMm1SabjGaU';
             var successUrl = 'https://www.thecoven.com/free-week-confirmation';
             var cancelUrl = 'https://www.thecoven.com/launch-copy-1234';
             var trialDays = 7;
-            // DO NOT EDIT ANYTHING BELOW
+            // END STRIPE CHECKOUT VARIABLES
 
             var email = '';
             hbspt.forms.create({
